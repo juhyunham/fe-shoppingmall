@@ -15,5 +15,4 @@ export const routes = [
     ],
   },
 ];
-
 export const pages = [{ route: "/" }, { route: "/products" }, { route: "/products/:id" }];
