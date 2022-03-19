@@ -1,21 +1,22 @@
 import { Product } from "../../types";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
 const ProductItem = ({ category, description, id, image, price, rating, title }: Product) => {
   return (
     <ProdItem key={`${category}=${id}`}>
-      <ProdCategory>{category}</ProdCategory>
-      <p>{description}</p>
-      <span>{id}</span>
-      <ProdImg>
-        <source media="(min-width:650px)" srcSet={image} />
-        <source media="(min-width:465px)" srcSet={image} />
-        <img src={image} alt={description} />
-      </ProdImg>
-      <span>{price}</span>
-      <span>{rating.rate}</span>
-      <p>{title}</p>
+      <Link to={`/products/${id}`}>
+        <ProdCategory>{category}</ProdCategory>
+        <ProdTitle>{title}</ProdTitle>
+        <ProdImg>
+          <source media="(min-width:650px)" srcSet={image} />
+          <source media="(min-width:465px)" srcSet={image} />
+          <img src={image} alt={description} />
+        </ProdImg>
+        <span>가격: {price}</span>
+        <span>평점: {rating.rate}</span>
+      </Link>
     </ProdItem>
   );
 };
@@ -33,12 +34,20 @@ export const ProdItem = styled.li`
 `;
 
 export const ProdCategory = styled.h3`
-  font-size: 20px;
+  font-size: 12px;
+  font-weight: normal;
+`;
+
+export const ProdTitle = styled.h2`
+  font-size: 16px;
 `;
 
 export const ProdImg = styled.picture`
+  margin: 10px 0;
+
   img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
   }
 `;
