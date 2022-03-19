@@ -1,4 +1,3 @@
-import React from "react";
 import GlobalLayout from "./pages/_layout";
 import Index from "./pages/index";
 import ProductsIndex from "./pages/products/index";
@@ -15,4 +14,11 @@ export const routes = [
     ],
   },
 ];
-export const pages = [{ route: "/" }, { route: "/products" }, { route: "/products/:id" }];
+
+export const pages = [
+  { route: "/" },
+  { route: "/cart" },
+  { route: "/payment" },
+  { route: "/products" },
+  { route: "/products/:id" },
+];
