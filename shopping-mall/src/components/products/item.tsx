@@ -27,7 +27,7 @@ export const ProdItem = styled.li`
   display: flex;
   flex-direction: column;
   width: 300px;
-  margin: 10px;
+  margin: 0 0 10px 10px;
   padding: 20px;
   border: 1px solid #212121;
   border-radius: 10px;

@@ -16,6 +16,7 @@ const ProductList = () => {
 
   return (
     <ProdListWrap>
+      <ProdListTitle>상품 목록</ProdListTitle>
       <ProdList>
         {data?.map((product) => (
           <ProductItem {...product} key={product.id} />
@@ -32,7 +33,12 @@ export const ProdListWrap = styled.div`
   margin: 0 auto;
 `;
 
+export const ProdListTitle = styled.h2`
+  margin: 20px 0;
+`;
+
 export const ProdList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin-left: -10px;
 `;
