@@ -26,7 +26,7 @@ export const fetcher = async ({
   params?: AniOBJ;
 }) => {
   try {
-    const url = `${BASE_URL}${path}`;
+    let url = `${BASE_URL}${path}`;
 
     const fetchOptions: RequestInit = {
       method,
@@ -35,6 +35,12 @@ export const fetcher = async ({
         "Access-Control-Allow-Origin": BASE_URL,
       },
     };
+
+    if (params) {
+      const searchParams = new URLSearchParams(params);
+      url += "?" + searchParams.toString();
+    }
+    if (body) fetchOptions.body = JSON.stringify(body);
 
     const res = await fetch(url, fetchOptions);
     const json = await res.json();
