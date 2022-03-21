@@ -24,17 +24,15 @@ const ProductList = () => {
 
 export default ProductList;
 
-export const ProdListWrap = styled.div`
-  width: 1280px;
-  margin: 0 auto;
-`;
+export const ProdListWrap = styled.div``;
 
 export const ProdListTitle = styled.h2`
   margin: 20px 0;
 `;
 
 export const ProdList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 10px;
 `;
