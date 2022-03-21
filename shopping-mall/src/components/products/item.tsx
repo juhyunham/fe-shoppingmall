@@ -1,10 +1,9 @@
-import { Product } from "../../types";
 import { Link } from "react-router-dom";
-import { PRODUCT } from "../../graphql/products";
+import { Product } from "../../graphql/products";
 
 import styled from "styled-components";
 
-const ProductItem = ({ description, id, imageUrl, price, title }: PRODUCT) => {
+const ProductItem = ({ description, id, imageUrl, price, title }: Product) => {
   return (
     <ProdItem key={id}>
       <Link to={`/products/${id}`}>

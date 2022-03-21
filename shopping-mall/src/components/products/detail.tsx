@@ -1,32 +1,18 @@
 import React from "react";
-import { Product } from "../../types";
 
 import styled from "styled-components";
+import { Product } from "../../graphql/products";
 
-const ProductDetail = ({
-  item: {
-    id,
-    category,
-    title,
-    image,
-    description,
-    price,
-    rating: { rate },
-  },
-}: {
-  item: Product;
-}) => {
+const ProductDetail = ({ item: { id, title, imageUrl, description, price } }: { item: Product }) => {
   return (
-    <ProdDetailItem key={`${category}=${id}`}>
-      <ProdDetailCategory>{category}</ProdDetailCategory>
+    <ProdDetailItem key={id}>
       <ProdDetailTitle>{title}</ProdDetailTitle>
       <ProdDetailImg>
-        <source media="(min-width:650px)" srcSet={image} />
-        <source media="(min-width:465px)" srcSet={image} />
-        <img src={image} alt={description} />
+        <source media="(min-width:650px)" srcSet={imageUrl} />
+        <source media="(min-width:465px)" srcSet={imageUrl} />
+        <img src={imageUrl} alt={description} />
       </ProdDetailImg>
-      <ProdDetailPrice>가격: {price}</ProdDetailPrice>
-      <ProdDetailRate>평점: {rate}</ProdDetailRate>
+      <ProdDetailPrice>가격: {price}원</ProdDetailPrice>
     </ProdDetailItem>
   );
 };
