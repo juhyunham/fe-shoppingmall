@@ -19,7 +19,7 @@ export default defineConfig({
         ],
       },
     }),
-    reactRouterPlugin(),
+    // reactRouterPlugin(),
     reactRefresh(),
   ],
 });
