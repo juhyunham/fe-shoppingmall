@@ -1,21 +1,20 @@
 import { Product } from "../../types";
 import { Link } from "react-router-dom";
+import { PRODUCT } from "../../graphql/products";
 
 import styled from "styled-components";
 
-const ProductItem = ({ category, description, id, image, price, rating, title }: Product) => {
+const ProductItem = ({ description, id, imageUrl, price, title }: PRODUCT) => {
   return (
-    <ProdItem key={`${category}=${id}`}>
+    <ProdItem key={id}>
       <Link to={`/products/${id}`}>
-        <ProdCategory>{category}</ProdCategory>
         <ProdTitle>{title}</ProdTitle>
         <ProdImg>
-          <source media="(min-width:650px)" srcSet={image} />
-          <source media="(min-width:465px)" srcSet={image} />
-          <img src={image} alt={description} />
+          <source media="(min-width:650px)" srcSet={imageUrl} />
+          <source media="(min-width:465px)" srcSet={imageUrl} />
+          <img src={imageUrl} alt={description} />
         </ProdImg>
         <span>가격: {price}</span>
-        <span>평점: {rating.rate}</span>
       </Link>
     </ProdItem>
   );

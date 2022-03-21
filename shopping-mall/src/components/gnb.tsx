@@ -6,7 +6,7 @@ import styled from "styled-components";
 const gnbItem = ["홈", "상품목록", "장바구니"];
 
 const Gnb = () => {
-  const [clickIndex, setClickIndex] = useState(-1);
+  const [clickIndex, setClickIndex] = useState(0);
 
   return (
     <GnbNav className="gnb">
