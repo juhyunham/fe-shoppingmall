@@ -22,7 +22,7 @@ const ProductItem = ({ description, id, imageUrl, price, title }: Product) => {
       <ProdItemAddCart type="button" onClick={addToCart}>
         장바구니 담기
       </ProdItemAddCart>
-      <span>{cartAmount || 0}</span>
+      <span>수량: {cartAmount || 0}</span>
     </ProdItem>
   );
 };
