@@ -1,12 +1,11 @@
 import { useQuery } from "react-query";
 import { graphqlFetcher, QueryKeys } from "../../queryClient";
-import { Product } from "../../types";
 import ProductItem from "../../components/products/item";
 import styled from "styled-components";
-import GET_PRODUCTS, { PRODUCTS } from "../../graphql/products";
+import GET_PRODUCTS, { Products } from "../../graphql/products";
 
 const ProductList = () => {
-  const { data } = useQuery<PRODUCTS>(QueryKeys.PRODUCTS, () => graphqlFetcher(GET_PRODUCTS));
+  const { data } = useQuery<Products>(QueryKeys.PRODUCTS, () => graphqlFetcher(GET_PRODUCTS));
 
   console.log(data);
 

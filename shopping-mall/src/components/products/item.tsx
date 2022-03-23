@@ -1,10 +1,13 @@
-import { Product } from "../../types";
 import { Link } from "react-router-dom";
-import { PRODUCT } from "../../graphql/products";
+import { Product } from "../../graphql/products";
+import { cartItemSelector } from "../../recoils/cart";
+import { useRecoilState } from "recoil";
 
 import styled from "styled-components";
 
-const ProductItem = ({ description, id, imageUrl, price, title }: PRODUCT) => {
+const ProductItem = ({ description, id, imageUrl, price, title }: Product) => {
+  const [cartAmount, setCartAmount] = useRecoilState(cartItemSelector(id));
+  const addToCart = () => setCartAmount((prev) => (prev || 0) + 1);
   return (
     <ProdItem key={id}>
       <Link to={`/products/${id}`}>
@@ -16,6 +19,10 @@ const ProductItem = ({ description, id, imageUrl, price, title }: PRODUCT) => {
         </ProdImg>
         <span>가격: {price}</span>
       </Link>
+      <ProdItemAddCart type="button" onClick={addToCart}>
+        장바구니 담기
+      </ProdItemAddCart>
+      <span>수량: {cartAmount || 0}</span>
     </ProdItem>
   );
 };
@@ -45,6 +52,12 @@ export const ProdImg = styled.picture`
   img {
     width: 100%;
     height: 150px;
-    object-fit: contain;
+    object-fit: cover;
   }
+`;
+
+export const ProdItemAddCart = styled.button`
+  display: block;
+  margin-top: 5px;
+  cursor: pointer;
 `;
