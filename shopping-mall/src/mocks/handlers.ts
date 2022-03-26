@@ -1,6 +1,6 @@
 import { graphql } from "msw";
 import { v4 as uuid } from "uuid";
-import { ADD_CART, Cart, GET_CART } from "../graphql/cart";
+import { ADD_CART, CartType, GET_CART } from "../graphql/cart";
 import GET_PRODUCTS, { GET_PRODUCT } from "../graphql/products";
 
 const mock_products = Array.from({ length: 20 }).map((_, i) => ({
@@ -12,7 +12,7 @@ const mock_products = Array.from({ length: 20 }).map((_, i) => ({
   createdAt: new Date(1646736789123 + i * 1000 * 60 * 60 * 24).toString,
 }));
 
-const cartData: { [key: string]: Cart } = (() => ({}))();
+let cartData: { [key: string]: CartType } = {};
 
 export const handlers = [
   graphql.query(GET_PRODUCTS, (req, res, ctx) => {
@@ -31,7 +31,7 @@ export const handlers = [
   }),
 
   graphql.query(GET_CART, (req, res, ctx) => {
-    return res();
+    return res(ctx.data(cartData));
   }),
 
   graphql.query(ADD_CART, (req, res, ctx) => {
@@ -41,7 +41,7 @@ export const handlers = [
     if (newData[id]) {
       newData[id] = {
         ...newData[id],
-        amount: newData[id].amount + 1,
+        amount: newData[id].amount || 0 + 1,
       };
     } else {
       const found = mock_products.find((item) => item.id === req.variables.id);
@@ -49,11 +49,12 @@ export const handlers = [
       if (found) {
         newData[id] = {
           ...found,
-          amount: newData[id].amount + 1,
+          amount: 1,
         };
       }
     }
 
+    cartData = newData;
     return res(ctx.data({ newData }));
   }),
 ];
